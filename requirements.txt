@@ -1,0 +1,10 @@
+fastapi>=0.115.0
+uvicorn>=0.31.0
+pandas>=1.2.4
+joblib>=1.0.1
+scikit-learn>=0.24.1
+xgboost>=2.1.1
+statsmodels>=0.12.2  # For ARIMA
+matplotlib>=3.3.0    # Corrected matplotlib version
+numpy>=1.21.0        # Ensure compatibility with statsmodels
+streamlit>=1.12.2    # Use a broader version constraint
