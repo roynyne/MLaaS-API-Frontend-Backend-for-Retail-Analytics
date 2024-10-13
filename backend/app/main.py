@@ -4,10 +4,26 @@ from joblib import load
 import pandas as pd
 import joblib
 from datetime import datetime, timedelta
+from fastapi.middleware.cors import CORSMiddleware  # Import CORS middleware
 import numpy as np
 
 # Initialize FastAPI
 app = FastAPI()
+
+# Set allowed origins for CORS (change to your frontend URL if needed)
+origins = [
+    "http://localhost:8501",  # Streamlit frontend running locally
+    "https://sales-api-frontend.onrender.com",  # Replace with actual Render frontend URL
+]
+
+# Add CORS middleware to the app to allow communication between frontend and backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load pre-trained models
 xgb_model = load('models/xgboost_model.pkl')
@@ -41,7 +57,7 @@ def preprocess_input(store_id: int, item_id: int, sell_price: float, date: str, 
 @app.get("/")
 def read_root():
     return {
-        "message": "Welcome to the Sales Prediction API. Use `/sales/stores/items/` for item-based predictions or `/sales/national/` for national sales forecasts."
+        "message": "Welcome to the Sales Prediction API. Use /sales/stores/items/ for item-based predictions or /sales/national/ for national sales forecasts."
     }
 
 # Healthcheck endpoint
@@ -97,6 +113,3 @@ def forecast_national_sales(date: str):
         # Log the exception for debugging
         print(f"Error occurred: {e}")
         return JSONResponse({"error": "Internal Server Error"}, status_code=500)
-
-
- 

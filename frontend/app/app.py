@@ -1,11 +1,10 @@
 import streamlit as st
-import joblib
 import pandas as pd
+import requests
 from datetime import datetime, timedelta
 
-# Load your models
-xgb_model = joblib.load('models/xgboost_model.pkl')
-arima_model = joblib.load('models/ARIMA_model.pkl')  # Load ARIMA model
+# Set the FastAPI base URL (replace with your actual FastAPI URL)
+FASTAPI_URL = "https://sales-api-backend-qw48.onrender.com"
 
 # Set up the Streamlit app
 st.title("Sales Prediction and Forecasting App")
@@ -20,36 +19,44 @@ event_name_encoded = st.number_input("Enter event name encoded", min_value=0, va
 event_type_encoded = st.number_input("Enter event type encoded", min_value=0, value=1)
 
 if st.button("Predict Sales"):
-    # Preprocess input and predict sales using XGBoost
-    input_data = pd.DataFrame({
-        'store_id': [store_id],
-        'item_id': [item_id],
-        'day': [date.day],
-        'month': [date.month],
-        'weekday': [date.weekday()],
-        'sell_price': [sell_price],
-        'event_name_encoded': [event_name_encoded],
-        'event_type_encoded': [event_type_encoded]
-    })
-    predicted_sales = xgb_model.predict(input_data)[0]
-    st.write(f"Predicted Sales: {round(predicted_sales, 2)}")
+    # Create the query parameters for the FastAPI request
+    params = {
+        "date": date.strftime("%Y-%m-%d"),
+        "store_id": store_id,
+        "item_id": item_id,
+        "sell_price": sell_price,
+        "event_name_encoded": event_name_encoded,
+        "event_type_encoded": event_type_encoded,
+    }
+    
+    # Make a GET request to the FastAPI endpoint
+    response = requests.get(f"{FASTAPI_URL}/sales/stores/items/", params=params)
+    
+    if response.status_code == 200:
+        # Extract the predicted sales from the response
+        predicted_sales = response.json()["prediction"]
+        st.write(f"Predicted Sales: {round(predicted_sales, 2)}")
+    else:
+        st.write("Error in prediction. Please check the inputs or try again.")
 
 # ARIMA: Forecast national sales for the next 7 days
 st.header("Forecast National Sales")
 forecast_date = st.date_input("Select start date for forecasting")
 
 if st.button("Forecast Sales"):
-    # Generate next 7 days based on the selected start date
-    future_dates = [forecast_date + timedelta(days=i) for i in range(1, 8)]
+    # Prepare the query parameters for the FastAPI request
+    params = {
+        "date": forecast_date.strftime("%Y-%m-%d")
+    }
     
-    # Forecast using the ARIMA model
-    arima_forecast = arima_model.forecast(steps=7)
+    # Make a GET request to the FastAPI forecast endpoint
+    response = requests.get(f"{FASTAPI_URL}/sales/national/", params=params)
     
-    # Prepare the forecasted sales for display
-    forecasted_sales = pd.DataFrame({
-        'Date': future_dates,
-        'Forecasted_Sales': arima_forecast
-    })
-    
-    st.write("Forecasted Sales for the next 7 days:")
-    st.dataframe(forecasted_sales)
+    if response.status_code == 200:
+        # Extract the forecasted sales from the response
+        forecasted_sales = response.json()
+        forecast_df = pd.DataFrame(list(forecasted_sales.items()), columns=['Date', 'Forecasted Sales'])
+        st.write("Forecasted Sales for the next 7 days:")
+        st.dataframe(forecast_df)
+    else:
+        st.write("Error in forecasting. Please try again.")
