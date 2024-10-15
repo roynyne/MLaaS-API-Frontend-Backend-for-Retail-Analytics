@@ -11,7 +11,7 @@ Predictive API: Provides sales revenue predictions for a given item in a specifi
 Forecasting API: Predicts total sales revenue for the next 7 days across all stores.
 
 ### Repository Structure
-==============================
+--------
         
     ├── README.md               <- The top-level README file containing project overview, installation, and usage instructions.
     ├── app
@@ -41,7 +41,7 @@ Forecasting API: Predicts total sales revenue for the next 7 days across all sto
 --------
 
 ### Installation
-==============================
+--------
 
 1. Clone the repository:
 
@@ -56,7 +56,7 @@ Forecasting API: Predicts total sales revenue for the next 7 days across all sto
 --------
 
 ### Setup
-==============================
+--------
 
 **Prerequisites**
 
@@ -76,7 +76,7 @@ https://sales-api-backend-qw48.onrender.com
 ------------
 
 **Format for Inputs**
-==============================
+--------
 
 Select date : YYYY-MM-DD
 
@@ -93,7 +93,7 @@ Enter event type encoded : 0-2
 ------------
 
 ### Models
-==============================
+--------
 
 The following models are used in the API:
 
@@ -103,7 +103,7 @@ ARIMA: Forecasting models for time-series analysis.
 --------
 
 ### Contributors
-------------
+--------
 
 Roy Hegde (roynyne@hotmail.com)
 
