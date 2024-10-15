@@ -45,12 +45,13 @@ Forecasting API: Predicts total sales revenue for the next 7 days across all sto
 
 1. Clone the repository:
 
-    git clone https://github.com/roynyne/sales-api
-    cd sales-revenue-prediction
+        git clone https://github.com/roynyne/sales-api
 
-2. Install the required packages:
+        cd sales-revenue-prediction
 
-    pip install -r requirements.txt
+3. Install the required packages:
+
+        pip install -r requirements.txt
 
 --------
 
