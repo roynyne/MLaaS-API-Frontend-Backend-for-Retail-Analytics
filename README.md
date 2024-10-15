@@ -77,10 +77,15 @@ https://sales-api-backend-qw48.onrender.com
 **Format**
 
 Select date : YYYY-MM-DD
+
 Enter store ID : Integer
+
 Enter item ID : Integer
+
 Enter sell price : Float
+
 Enter event name encoded : 0-2
+
 Enter event type encoded : 0-2
 
 ------------
