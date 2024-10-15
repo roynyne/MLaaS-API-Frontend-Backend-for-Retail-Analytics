@@ -67,10 +67,10 @@ Forecasting API: Predicts total sales revenue for the next 7 days across all sto
 
 **Render Links**
 
-Frontend (Fast API)
+Frontend (Streamlit)
 https://sales-api-frontend.onrender.com/home
 
-Backend (Streamlit)
+Backend (FastAPI)
 https://sales-api-backend-qw48.onrender.com
 
 ------------
