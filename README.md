@@ -74,7 +74,7 @@ Backend (FastAPI)
 https://sales-api-backend-qw48.onrender.com
 
 
-**Format**
+**Format for Inputs**
 
 Select date : YYYY-MM-DD
 
