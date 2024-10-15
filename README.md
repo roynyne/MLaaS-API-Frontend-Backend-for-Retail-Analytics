@@ -86,9 +86,16 @@ Enter item ID : Integer
 
 Enter sell price : Float
 
-Enter event name encoded : 0-2
+Enter event name encoded : 0-30
 
-Enter event type encoded : 0-2
+Enter event type encoded : 0-4
+
+![image](https://github.com/user-attachments/assets/219ee782-d332-457c-bccb-9519152919fd)
+
+
+<img width="270" alt="Screenshot 2024-10-15 at 11 24 52 PM" src="https://github.com/user-attachments/assets/dd9bb31b-106e-42e5-8dac-199ce684509f">
+
+
 
 ------------
 
