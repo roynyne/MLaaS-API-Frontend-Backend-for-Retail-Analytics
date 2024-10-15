@@ -81,6 +81,7 @@ The following models are used in the API:
 
 XGBoost: Predictive model for item-store-date sales prediction.
 ARIMA: Forecasting models for time-series analysis.
+
 --------
 
 ### Contributors
