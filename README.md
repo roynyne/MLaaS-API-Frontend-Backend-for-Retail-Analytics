@@ -67,10 +67,10 @@ Forecasting API: Predicts total sales revenue for the next 7 days across all sto
 
 **Render Links**
 
-        Frontend (Fast API)
+Frontend (Fast API)
         https://sales-api-frontend.onrender.com/home
 
-        Backend (Streamlit)
+Backend (Streamlit)
         https://sales-api-backend-qw48.onrender.com
 ------------
 
@@ -78,8 +78,8 @@ Forecasting API: Predicts total sales revenue for the next 7 days across all sto
 
 The following models are used in the API:
 
-        XGBoost: Predictive model for item-store-date sales prediction.
-        Prophet and ARIMA: Forecasting models for time-series analysis.
+XGBoost: Predictive model for item-store-date sales prediction.
+ARIMA: Forecasting models for time-series analysis.
 --------
 
 ### Contributors
